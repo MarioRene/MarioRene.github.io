@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario René Mérida - Data Analyst & Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f7f4ea;
+            --bg-secondary: #ded9e2;
+            --bg-tertiary: #c0b9dd;
+            --accent-blue: #80a1d4;
+            --accent-mint: #75c9c8;
+            --text-dark: #2d2d2d;
+            --text-light: #5a5a5a;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient-1: linear-gradient(135deg, #80a1d4 0%, #75c9c8 100%);
+            --gradient-2: linear-gradient(135deg, #c0b9dd 0%, #80a1d4 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #252525;
+            --accent-blue: #6b8fb8;
+            --accent-mint: #5fa6a5;
+            --text-dark: #e8e8e8;
+            --text-light: #a0a0a0;
+            --card-bg: #1a1a1a;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Smooth */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-mint);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section - Estilo MoureDev */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(100px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(100px);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--card-bg);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px var(--shadow);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.6s ease 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(128, 161, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(128, 161, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: var(--bg-primary);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--card-bg);
+            padding: 4rem 2rem;
+            box-shadow: 0 5px 30px var(--shadow);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 50px var(--shadow);
+            text-align: center;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            border: 5px solid var(--card-bg);
+        }
+
+        .profile-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-card .role {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--bg-secondary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-mint);
+        }
+
+        .cv-download {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(128, 161, 212, 0.3);
+        }
+
+        .cv-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(128, 161, 212, 0.4);
+        }
+
+        .about-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 50px var(--shadow);
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-mint);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.8rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 2rem;
+            font-size: 1rem;
+        }
+
+        .skill-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-mint);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-placeholder {
+            font-size: 5rem;
+            opacity: 0.5;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .link-github {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .link-github:hover {
+            box-shadow: 0 10px 30px rgba(128, 161, 212, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .link-demo {
+            background: transparent;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+        }
+
+        .link-demo:hover {
+            background: var(--text-dark);
+            color: var(--bg-primary);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px var(--shadow);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.8rem;
+            top: 2.5rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent-mint);
+            border: 4px solid var(--bg-primary);
+            box-shadow: 0 0 0 4px var(--accent-mint);
+            z-index: 1;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .date {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        .timeline-item ul {
+            color: var(--text-light);
+            margin-left: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--accent-mint);
+            opacity: 0.3;
+            line-height: 0;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-1);
+            border-radius: 40px;
+            padding: 5rem 3rem;
+            text-align: center;
+            color: white;
+            margin: 4rem 2rem;
+            box-shadow: 0 20px 60px rgba(128, 161, 212, 0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-section .btn {
+            background: white;
+            color: var(--accent-blue);
+        }
+
+        .cta-section .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 4rem 2rem 2rem;
+            margin-top: 6rem;
+            border-top: 2px solid var(--bg-secondary);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) rotate(10deg);
+            background: var(--gradient-1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid var(--bg-secondary);
+            color: var(--text-light);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                display: none;
+                box-shadow: 0 10px 40px var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                position: static;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-section {
+                padding: 3rem 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">MR.MT</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">👨‍💻 Disponible para proyectos</div>
+            <h1>
+                Hola, soy <br>
+                <span class="gradient-text">Mario René Mérida</span>
+            </h1>
+            <p class="subtitle">
+                Ingeniero en Ciencias y Sistemas especializado en <strong>Análisis de Datos</strong> y <strong>IT Project Management</strong>. 
+                Transformo datos en decisiones y proyectos en realidades.
+            </p>
+            <div class="cta-buttons">
+                <a href="#proyectos" class="btn btn-primary">🚀 Ver Proyectos</a>
+                <a href="#contacto" class="btn btn-secondary">📧 Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item" style="animation-delay: 0.1s;">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Años de Experiencia</div>
+            </div>
+            <div class="stat-item" style="animation-delay: 0.2s;">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Proyectos Completados</div>
+            </div>
+            <div class="stat-item" style="animation-delay: 0.3s;">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Certificaciones</div>
+            </div>
+            <div class="stat-item" style="animation-delay: 0.4s;">
+                <div class="stat-number">C1</div>
+                <div class="stat-label">Nivel de Inglés</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="sobre-mi">
+        <div class="section-header">
+            <div class="section-badge">🎯 Conóceme</div>
+            <h2 class="section-title">Sobre Mí</h2>
+            <p class="section-description">
+                Apasionado por la tecnología, los datos y la resolución de problemas
+            </p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="profile-card">
+                <div class="profile-image-wrapper">
+                    <img src="https://via.placeholder.com/200" alt="Mario René Mérida" class="profile-image">
+                </div>
+                <h3>Mario René Mérida</h3>
+                <p class="role">Data Analyst & Developer</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        📧 <a href="mailto:mariorene.taracena@gmail.com">mariorene.taracena@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        📱 <a href="tel:+50257626410">(+502) 5762 6410</a>
+                    </div>
+                    <div class="contact-item">
+                        📍 Sacatepéquez, Guatemala
+                    </div>
+                    <div class="contact-item">
+                        🎓 USAC - En curso
+                    </div>
+                </div>
+
+                <a href="#" class="cv-download">
+                    📄 Descargar CV
+                </a>
+            </div>
+
+            <div class="about-content">
+                <h3>Mi Historia</h3>
+                <p>Estudiante de <strong>Ingeniería en Ciencias y Sistemas</strong> en la Universidad de San Carlos de Guatemala, con una sólida experiencia en análisis de datos, automatización de procesos y gestión de proyectos ágiles.</p>
+                
+                <p>Mi trayectoria profesional me ha permitido desarrollar habilidades tanto técnicas como interpersonales. He trabajado en soporte técnico para plataformas digitales de alcance internacional, donde aprendí la importancia de la comunicación efectiva y la resolución rápida de problemas.</p>
+                
+                <p>Actualmente, mi enfoque está en el <strong>análisis de datos</strong> y la <strong>gestión de proyectos tecnológicos</strong>. Manejo herramientas como Python, SQL, Power BI y Tableau para transformar datos complejos en insights accionables que impulsen la toma de decisiones estratégicas.</p>
+
+                <h3 style="margin-top: 2rem;">Formación Académica</h3>
+                <p><strong>🎓 Universidad de San Carlos de Guatemala</strong><br>
+                Licenciatura en Ingeniería en Ciencias y Sistemas (2021 - Presente)<br>
+                <em>Enfoque: Ciencia de datos, gestión de proyectos y tecnologías aplicadas</em></p>
+                
+                <h3 style="margin-top: 2rem;">Certificaciones Recientes</h3>
+                <ul style="margin-left: 2rem; color: var(--text-light); line-height: 2;">
+                    <li>✅ Inglés Avanzado (C1) - CALUSAC - Julio 2025</li>
+                    <li>✅ Desarrollo con Python Básico - INTECAP - Mayo 2025</li>
+                    <li>✅ Java con Conexión a BD - INTECAP - Julio 2025</li>
+                    <li>✅ Generative AI in Practice - SoloLearn - Junio 2025</li>
+                    <li>✅ Python Core - SoloLearn - Noviembre 2022</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades">
+        <div class="section-header">
+            <div class="section-badge">💡 Expertise</div>
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <p class="section-description">
+                Tecnologías y herramientas que domino para crear soluciones efectivas
+            </p>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h3>Lenguajes de Programación</h3>
+                <ul class="skill-list">
+                    <li>Python (pandas, matplotlib, seaborn)</li>
+                    <li>SQL (diseño y optimización de BD)</li>
+                    <li>Java (desarrollo backend, JDBC)</li>
+                    <li>JavaScript (aplicaciones web)</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3>Análisis de Datos & BI</h3>
+                <ul class="skill-list">
+                    <li>Power BI - Dashboards interactivos</li>
+                    <li>Tableau - Visualización avanzada</li>
+                    <li>Excel Avanzado (VBA, Power Query)</li>
+                    <li>ETL y transformación de datos</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3>Gestión de Proyectos</h3>
+                <ul class="skill-list">
+                    <li>Metodologías ágiles (Scrum, Kanban)</li>
+                    <li>Planificación y seguimiento</li>
+                    <li>Comunicación efectiva de equipos</li>
+                    <li>Gestión de stakeholders</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h3>Herramientas & Software</h3>
+                <ul class="skill-list">
+                    <li>Git & GitHub (control de versiones)</li>
+                    <li>Microsoft Office Suite</li>
+                    <li>AutoCAD - diseño técnico</li>
+                    <li>Bases de datos (MySQL, PostgreSQL)</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3>IA & Automatización</h3>
+                <ul class="skill-list">
+                    <li>IA Generativa aplicada</li>
+                    <li>Automatización de procesos</li>
+                    <li>Scripts de productividad</li>
+                    <li>Optimización de workflows</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3>Soft Skills</h3>
+                <ul class="skill-list">
+                    <li>Comunicación efectiva (ES/EN)</li>
+                    <li>Resolución de problemas</li>
+                    <li>Trabajo en equipo</li>
+                    <li>Adaptabilidad y aprendizaje continuo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos">
+        <div class="section-header">
+            <div class="section-badge">🚀 Portfolio</div>
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <p class="section-description">
+                Una selección de mis trabajos más recientes y relevantes
+            </p>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Proyecto 1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- Reemplaza con: <img src="tu-imagen.jpg" alt="Proyecto"> -->
+                    <span class="project-placeholder">📊</span>
+                </div>
+                <div class="project-content">
+                    <h3>Dashboard de Análisis de Ventas</h3>
+                    <p>Dashboard interactivo en Power BI para análisis de métricas de ventas, tendencias temporales y KPIs empresariales. Incluye visualizaciones dinámicas y filtros interactivos para análisis detallado.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">DAX</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tu-usuario/proyecto" class="project-link link-github" target="_blank">Ver Código</a>
+                        <a href="#" class="project-link link-demo">Demo Live</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-placeholder">🐍</span>
+                </div>
+                <div class="project-content">
+                    <h3>Automatización de Procesos ETL</h3>
+                    <p>Script en Python para automatización de extracción, transformación y carga de datos desde múltiples fuentes hacia base de datos centralizada. Reduce tiempo de procesamiento en un 70%.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">APIs</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tu-usuario/proyecto" class="project-link link-github" target="_blank">Ver Código</a>
+                        <a href="#" class="project-link link-demo">Documentación</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-placeholder">☕</span>
+                </div>
+                <div class="project-content">
+                    <h3>Sistema de Gestión Empresarial</h3>
+                    <p>Aplicación Java con interfaz gráfica para gestión integral de inventarios, ventas y reportes. Incluye conexión a base de datos MySQL y generación automática de reportes.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">JDBC</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Swing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tu-usuario/proyecto" class="project-link link-github" target="_blank">Ver Código</a>
+                        <a href="#" class="project-link link-demo">Screenshots</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 4 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-placeholder">📈</span>
+                </div>
+                <div class="project-content">
+                    <h3>Análisis Predictivo con ML</h3>
+                    <p>Modelo de Machine Learning para predicción de tendencias de ventas utilizando datos históricos. Implementado en Python con scikit-learn y visualizaciones interactivas.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Jupyter</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tu-usuario/proyecto" class="project-link link-github" target="_blank">Ver Código</a>
+                        <a href="#" class="project-link link-demo">Notebook</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 5 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-placeholder">🎨</span>
+                </div>
+                <div class="project-content">
+                    <h3>Web App Interactiva</h3>
+                    <p>Aplicación web responsiva desarrollada con tecnologías modernas. Incluye autenticación de usuarios, gestión de contenido y diseño adaptable a dispositivos móviles.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tu-usuario/proyecto" class="project-link link-github" target="_blank">Ver Código</a>
+                        <a href="#" class="project-link link-demo">Visitar Web</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 6 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-placeholder">🔄</span>
+                </div>
+                <div class="project-content">
+                    <h3>Bot de Automatización</h3>
+                    <p>Bot inteligente para automatización de tareas repetitivas en procesos empresariales. Reduce tiempo operativo y minimiza errores humanos en el flujo de trabajo.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Selenium</span>
+                        <span class="tech-tag">APIs</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tu-usuario/proyecto" class="project-link link-github" target="_blank">Ver Código</a>
+                        <a href="#" class="project-link link-demo">Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experiencia">
+        <div class="section-header">
+            <div class="section-badge">💼 Trayectoria</div>
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <p class="section-description">
+                Mi recorrido en el mundo profesional y las experiencias que me han formado
+            </p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Soporte Técnico y Análisis de Procesos</h3>
+                <div class="company">Grubhub (IntouchCX)</div>
+                <div class="date">📅 Abril 2022 - Abril 2023 | Guatemala</div>
+                <ul>
+                    <li><strong>Resolución de incidencias</strong> para conductores en plataforma digital a través de múltiples canales (correo, chat y llamadas)</li>
+                    <li><strong>Análisis de casos recurrentes</strong>, identificando patrones y proponiendo mejoras que redujeron los tiempos de resolución en un 15%</li>
+                    <li><strong>Comunicación efectiva</strong> con equipos internos para escalar problemas y optimizar procesos operativos</li>
+                    <li>Manejo de métricas de rendimiento y reportes de calidad del servicio</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Atención al Cliente Digital</h3>
+                <div class="company">Noom (Telus / Trabajo Temporal)</div>
+                <div class="date">📅 Noviembre 2021 - Enero 2022 | Guatemala</div>
+                <ul>
+                    <li><strong>Gestión de usuarios</strong> vía correo electrónico y chat en aplicación de salud digital</li>
+                    <li><strong>Registro y clasificación</strong> de incidencias para retroalimentación al equipo de producto</li>
+                    <li>Soporte técnico para problemas relacionados con la plataforma y funcionalidades</li>
+                    <li>Mantenimiento de altos estándares de satisfacción del cliente</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Pre-prácticas Profesionales</h3>
+                <div class="company">Le'Suisse Spa</div>
+                <div class="date">📅 Septiembre 2019 - Octubre 2019 | Sacatepéquez</div>
+                <ul>
+                    <li><strong>Gestión de redes sociales</strong> y creación de contenido digital</li>
+                    <li><strong>Asistencia técnica</strong> en hardware y software para el negocio</li>
+                    <li>Contribución a un índice de satisfacción del cliente <strong>superior al 90%</strong></li>
+                    <li>Implementación de mejoras en procesos administrativos digitales</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Diseñador de Marca</h3>
+                <div class="company">Rescate Agrícola (ONG)</div>
+                <div class="date">📅 Junio 2019 - Agosto 2019 | Guatemala</div>
+                <ul>
+                    <li><strong>Diseño y desarrollo</strong> de identidad visual de la organización</li>
+                    <li><strong>Creación de material promocional</strong> y contenido para campañas en redes sociales</li>
+                    <li>Gestión de presencia digital y engagement con la comunidad</li>
+                    <li>Colaboración con equipos multidisciplinarios para proyectos de impacto social</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section>
+        <div class="section-header">
+            <div class="section-badge">💬 Testimonios</div>
+            <h2 class="section-title">Lo Que Dicen de Mí</h2>
+            <p class="section-description">
+                Feedback de colegas, supervisores y compañeros de equipo
+            </p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Mario demostró excelentes habilidades analíticas durante su tiempo con nosotros. Su capacidad para identificar patrones y proponer soluciones efectivas fue invaluable para mejorar nuestros procesos.
+                </p>
+                <div class="testimonial-author">— Supervisor, Grubhub</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Su dedicación al aprendizaje continuo y su habilidad para comunicarse efectivamente en inglés lo convierten en un profesional excepcional. Siempre dispuesto a ayudar al equipo.
+                </p>
+                <div class="testimonial-author">— Compañero, USAC</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Mario tiene una gran capacidad para resolver problemas técnicos complejos. Su enfoque metódico y atención al detalle garantizan resultados de alta calidad en cada proyecto.
+                </p>
+                <div class="testimonial-author">— Coordinadora de Proyectos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>¿Tienes un proyecto en mente?</h2>
+        <p>Estoy disponible para colaborar en proyectos de análisis de datos, desarrollo de software o gestión de proyectos tecnológicos</p>
+        <a href="#contacto" class="btn">¡Trabajemos juntos! 🚀</a>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contacto">
+        <div class="section-header">
+            <div class="section-badge">📬 Contacto</div>
+            <h2 class="section-title">Hablemos</h2>
+            <p class="section-description">
+                Estoy siempre abierto a nuevas oportunidades y colaboraciones
+            </p>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skill-card" style="text-align: center;">
+                <div class="skill-icon">📧</div>
+                <h3>Email</h3>
+                <p><a href="mailto:mariorene.taracena@gmail.com" style="color: var(--accent-blue); text-decoration: none;">mariorene.taracena@gmail.com</a></p>
+            </div>
+            
+            <div class="skill-card" style="text-align: center;">
+                <div class="skill-icon">📱</div>
+                <h3>Teléfono</h3>
+                <p><a href="tel:+50257626410" style="color: var(--accent-blue); text-decoration: none;">(+502) 5762 6410</a></p>
+            </div>
+            
+            <div class="skill-card" style="text-align: center;">
+                <div class="skill-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p><a href="https://linkedin.com/in/tu-perfil" target="_blank" style="color: var(--accent-blue); text-decoration: none;">Ver Perfil</a></p>
+            </div>
+            
+            <div class="skill-card" style="text-align: center;">
+                <div class="skill-icon">💻</div>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/tu-usuario" target="_blank" style="color: var(--accent-blue); text-decoration: none;">Ver Repositorios</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>MR.MT</h3>
+                <p>Ingeniero en Ciencias y Sistemas apasionado por transformar datos en decisiones estratégicas. Siempre aprendiendo, siempre mejorando.</p>
+                <div class="social-links" style="margin-top: 2rem;">
+                    <a href="https://linkedin.com/in/tu-perfil" class="social-link" target="_blank">💼</a>
+                    <a href="https://github.com/tu-usuario" class="social-link" target="_blank">💻</a>
+                    <a href="mailto:mariorene.taracena@gmail.com" class="social-link">📧</a>
+                    <a href="tel:+50257626410" class="social-link">📱</a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#">Descargar CV</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mario René Mérida Taracena. Todos los derechos reservados.</p>
+            <p style="margin-top: 0.5rem;">Desarrollado con 💙 desde Guatemala para el mundo</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Theme
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.querySelector('.theme-toggle');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        });
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        window.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.skill-card, .project-card, .timeline-item, .testimonial-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    if (navLink) {
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+
+            // Header shadow on scroll
+            const header = document.querySelector('header');
+            if (scrollY > 50) {
+                header.style.boxShadow = '0 5px 30px var(--shadow)';
+            } else {
+                header.style.boxShadow = '0 2px 30px var(--shadow)';
+            }
+        });
+
+        // Animate numbers (stats)
+        function animateNumber(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + '+';
+                }
+            }, 16);
+        }
+
+        // Trigger number animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        if (!isNaN(target)) {
+                            animateNumber(stat, target);
+                        }
+                    });
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
